@@ -15,14 +15,31 @@ exports.mineBlock = (req, res) => {
 };
 
 exports.createTransaction = (req, res) => {
-  console.log("Received request for creating transaction");
+  console.log("Received request for creating transaction:", req.body);
   try {
     const { from, to, amount } = req.body;
+
+    // Basic validation
+    if (!from || typeof from !== "string" || from.trim() === "") {
+      return res.status(400).json({ message: "Invalid 'from' address." });
+    }
+    if (!to || typeof to !== "string" || to.trim() === "") {
+      return res.status(400).json({ message: "Invalid 'to' address." });
+    }
+    if (!amount || typeof amount !== "number" || amount <= 0) {
+      return res
+        .status(400)
+        .json({ message: "Amount must be a positive number." });
+    }
+
     const transaction = { from, to, amount };
     blockchain.addTransaction(transaction);
     res.json({ message: "Transaction added successfully.", transaction });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    console.error("Error creating transaction:", error);
+    res
+      .status(400)
+      .json({ message: "Failed to create transaction: " + error.message });
   }
 };
 
@@ -41,4 +58,9 @@ exports.consensus = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+exports.validateBlockchain = (req, res) => {
+  const isValid = blockchain.isChainValid();
+  res.json({ valid: isValid });
 };

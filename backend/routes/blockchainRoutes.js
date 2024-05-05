@@ -6,5 +6,6 @@ router.get("/blockchain", blockchainController.getBlockchain);
 router.post("/mine", blockchainController.mineBlock);
 router.post("/transactions/new", blockchainController.createTransaction);
 router.post("/consensus", blockchainController.consensus);
+router.get("/validate", blockchainController.validateBlockchain);
 
 module.exports = router;
