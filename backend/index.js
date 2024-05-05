@@ -1,14 +1,16 @@
 const express = require("express");
 const app = express();
-const port = 3000; 
+const port = 3000;
 const bodyParser = require("body-parser");
-const cors = require('cors');
+const cors = require("cors");
+const blockchainRoutes = require("./routes/blockchainRoutes");
 
-app.use(cors({
-  origin: 'http://localhost:3001', // Allow requests from this origin
-  credentials: true // Allow including cookies in requests (if applicable)
-}));
-
+app.use(
+  cors({
+    origin: "http://localhost:3001", // Allow requests from this origin
+    credentials: true, // Allow including cookies in requests (if applicable)
+  })
+);
 
 app.use(bodyParser.json());
 
@@ -20,5 +22,4 @@ app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
 
-const blockchainRoutes = require("./routes/blockchainRoutes");
 app.use("/api", blockchainRoutes);
