@@ -7,9 +7,7 @@ exports.getBlockchain = (req, res) => {
 
 exports.mineBlock = (req, res) => {
   try {
-    // This assumes that you only call addTransaction for valid transactions
-    // and that the reward to the miner is handled separately.
-    blockchain.minePendingTransactions("reward-address"); // Reward logic needs to be properly integrated
+    blockchain.minePendingTransactions("reward-address");
     res.status(201).send("Block mined and added to the blockchain");
   } catch (error) {
     res.status(500).json({ message: error.message });
