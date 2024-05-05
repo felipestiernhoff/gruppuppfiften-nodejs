@@ -1,4 +1,3 @@
-import Input from "./components/Input/Input";
 import "./App.css";
 import TransactionForm from "./components/NewTransaction";
 import BlockchainViewer from "./components/BlockchainView";

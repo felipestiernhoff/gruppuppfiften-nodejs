@@ -7,8 +7,8 @@ const blockchainRoutes = require("./routes/blockchainRoutes");
 
 app.use(
   cors({
-    origin: "http://localhost:3001", // Allow requests from this origin
-    credentials: true, // Allow including cookies in requests (if applicable)
+    origin: "http://localhost:3001", // Adjust if your frontend is on a different port
+    credentials: true,
   })
 );
 

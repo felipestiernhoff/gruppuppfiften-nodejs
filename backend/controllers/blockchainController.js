@@ -2,6 +2,7 @@ const Blockchain = require("../models/blockchain");
 const blockchain = new Blockchain();
 
 exports.getBlockchain = (req, res) => {
+  console.log(blockchain.chain); // Log the entire blockchain to inspect
   res.json(blockchain.chain);
 };
 

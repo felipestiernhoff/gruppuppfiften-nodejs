@@ -3,7 +3,13 @@ import axios from "axios";
 const API_URL = "http://localhost:3000/api";
 
 export const fetchBlockchain = async () => {
-  return axios.get(`${API_URL}/blockchain`);
+  try {
+    const response = await axios.get("http://localhost:3000/api/blockchain");
+    return response.data; // Ensure that you are returning data correctly
+  } catch (error) {
+    console.error("Error fetching blockchain: ", error);
+    throw error; // Re-throwing error to be caught in the viewer component
+  }
 };
 
 export const createTransaction = async (data) => {
