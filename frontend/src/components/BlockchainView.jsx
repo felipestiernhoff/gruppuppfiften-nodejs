@@ -16,6 +16,9 @@ function BlockchainViewer() {
     setLoading(true);
     try {
       const response = await fetchBlockchain();
+      if (!response || !Array.isArray(response)) {
+        throw new Error("Invalid blockchain data");
+      }
       setBlockchain(response);
       setLoading(false);
     } catch (error) {
