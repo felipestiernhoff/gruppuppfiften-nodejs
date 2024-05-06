@@ -1,0 +1,33 @@
+🌐 Blockchain NodeJs
+Detta projekt implementerar en simpel blockkedja applikation som använder React för front end och Node.js med Express för backend.
+Den tillåter att hämta och visa blockkedjans block, navigera genon blocken och 'minea' nya block som har pågående transaktioner.
+
+
+✨ Funktioner
+Visa information inom blocken
+Navigera genom blocken med "Previous Block" och "Next Block" knappar
+Fetch blockchain data from the backend API.
+Hämta blockchain data genom backend API
+Minea nya block när det finns pågående transactioner
+
+🛠️ Tech stack
+Frontend: React.js (yarn package manager)
+Backend: Node.js with Express (npm package manaer)
+Blockchain: Skräddarsydd blockkedje implementation med SHA-256 för hashning
+
+
+Starta Backend:
+
+- klona repot
+
+- cd backend
+- npm install         # Install backend dependencies
+- node index.js
+
+- cd ..
+- cd frontend
+- yarn install        # Install frontend dependencies
+- yarn start
+
+För att testa consensus måste du start node index.js på olika localhost (3000, 3001, 3002 etc)
+Testa sedan att validera kedjan med olika noderna

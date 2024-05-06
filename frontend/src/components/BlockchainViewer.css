@@ -1,0 +1,50 @@
+/* BlockchainViewer.css */
+
+.blockchain-viewer-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .block-details-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f919;
+  }
+  
+  .block-details-container h2 {
+    color: #333;
+  }
+  
+  .transaction-list {
+    margin-top: 10px;
+  }
+  
+  .navigation-buttons {
+    margin-top: 20px;
+  }
+  
+  .nav-button {
+    padding: 8px 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .nav-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .no-blocks-message {
+    margin-top: 20px;
+    font-style: italic;
+    color: #777;
+  }
