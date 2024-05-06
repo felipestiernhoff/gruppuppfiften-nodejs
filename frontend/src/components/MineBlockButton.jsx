@@ -10,7 +10,7 @@ function MineBlockButton() {
     setMessage("");
     try {
       const response = await axios.post("http://localhost:3000/api/mine");
-      setMessage("Block successfully mined! Hash: " + response.data.hash);
+      setMessage("Block successfully mined!");
     } catch (error) {
       console.error("Error mining block:", error);
       setMessage("Failed to mine block: " + error.message);

@@ -46,6 +46,8 @@ class Blockchain {
     return new Block(0, "01/01/2021", ["Genesis block"], "0");
   }
 
+  
+
   getLatestBlock() {
     return this.chain[this.chain.length - 1];
   }
@@ -57,28 +59,36 @@ class Blockchain {
   }
 
   addTransaction(transaction) {
-    console.log("Adding transaction:", transaction);
+    console.log("Received request for creating transaction:", transaction);
     if (!this.isValidTransaction(transaction)) {
       console.error("Invalid transaction", transaction);
       return;
     }
+    console.log("Adding transaction:", transaction);
     this.pendingTransactions.push(transaction);
   }
 
+
+
   minePendingTransactions(miningRewardAddress) {
-    console.log("Mining transactions:", this.pendingTransactions);
     if (!this.pendingTransactions.length) {
       console.log("No transactions to mine");
       return; // Stop the function if there are no transactions to mine
     }
 
-    let block = new Block(Date.now(), this.pendingTransactions);
-    block.mineBlock(this.difficulty);
+    const timestamp = new Date().toISOString();
+    const newBlock = new Block(
+      this.chain.length,
+      timestamp,
+      this.pendingTransactions,
+      this.getLatestBlock().hash
+    );
 
+    newBlock.mineBlock(this.difficulty);
     console.log("Block successfully mined!");
-    this.chain.push(block);
+    this.chain.push(newBlock);
 
-    // After mining, reset pending transactions with a new reward transaction
+    // Reset pending transactions with a new reward transaction
     this.pendingTransactions = [
       {
         fromAddress: null,
