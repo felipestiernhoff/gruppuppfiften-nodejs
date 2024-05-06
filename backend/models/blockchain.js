@@ -71,11 +71,13 @@ class Blockchain {
 
 
   minePendingTransactions(miningRewardAddress) {
-    if (!this.pendingTransactions.length) {
-      console.log("No transactions to mine");
-      return; // Stop the function if there are no transactions to mine
+    const minTransactionsToMine = 3; // Minimum number of transactions required to mine
+  
+    if (this.pendingTransactions.length < minTransactionsToMine) {
+      console.log(`Not enough transactions to mine (need at least ${minTransactionsToMine})`);
+      return; // Stop the function if there are fewer than 5 transactions to mine
     }
-
+  
     const timestamp = new Date().toISOString();
     const newBlock = new Block(
       this.chain.length,
@@ -83,11 +85,11 @@ class Blockchain {
       this.pendingTransactions,
       this.getLatestBlock().hash
     );
-
+  
     newBlock.mineBlock(this.difficulty);
     console.log("Block successfully mined!");
     this.chain.push(newBlock);
-
+  
     // Reset pending transactions with a new reward transaction
     this.pendingTransactions = [
       {
